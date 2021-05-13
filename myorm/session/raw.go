@@ -4,13 +4,15 @@ import (
 	"database/sql"
 	"fmt"
 	"myorm/log"
+	"myorm/schema"
 	"strings"
 )
 
 type Session struct {
-	db      *sql.DB         //
-	sql     strings.Builder //待了解
-	sqlVars []interface{}   //sql语句的参数确实就是这个
+	db       *sql.DB         //
+	sql      strings.Builder //待了解
+	sqlVars  []interface{}   //sql语句的参数确实就是这个
+	refTable *schema.Schema
 }
 
 func New(db *sql.DB) *Session {

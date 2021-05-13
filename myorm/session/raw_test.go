@@ -10,7 +10,7 @@ import (
 
 func Test_session(t *testing.T) {
 	log.Info("hello")
-	db, err := sql.Open("mysql", "user:username@tcp(127.0.0.1:3306)/database")
+	db, err := sql.Open("mysql", "username:password@tcp(127.0.0.1:3306)/dbname")
 	if err != nil {
 		log.Error(err)
 	}

@@ -3,6 +3,8 @@ package schema
 import (
 	"fmt"
 	"reflect"
+
+	"github.com/uudashr/orm/step1/log"
 )
 
 //一个Filed就是一张表的一个字段
@@ -45,7 +47,6 @@ func Parse(dest interface{}) *Schema {
 	//首先传的是一个指针
 	//本句是获取结构体对象的实例，返回的是结构体指针所指的具体对象的reflect.Value
 	modelType := reflect.Indirect(reflect.ValueOf(dest)).Type() //其本质其实和Elem()方法一样
-	//重点学习的地方来了
 	s := &Schema{
 		Model:    dest,
 		Name:     modelType.Name(),
@@ -57,6 +58,8 @@ func Parse(dest interface{}) *Schema {
 			Name: p.Name,
 			Type: DataTypeOf(reflect.Indirect(reflect.New(p.Type))), //reflect.New(type方法)获取一个value
 		}
+		log.Infof("第%d个解析的行", i)
+		log.Info(field.Name, field.Type)
 		//暂且不考虑tag标签
 		s.Fields = append(s.Fields, field)
 		s.FieldNames = append(s.FieldNames, p.Name)
