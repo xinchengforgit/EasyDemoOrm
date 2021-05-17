@@ -24,6 +24,7 @@ func (s *Session) Model(value interface{}) *Session {
 	return s
 }
 
+//建表
 func (s *Session) CreateTable() error {
 	table := s.RefTable()
 	var columns []string

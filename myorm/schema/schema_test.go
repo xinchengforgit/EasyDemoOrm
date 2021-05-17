@@ -21,3 +21,6 @@ func Test_parse_schema(t *testing.T) {
 		log.Info(field.Name, field.Type)
 	}
 }
+func Test_record(t *testing.T) {
+
+}

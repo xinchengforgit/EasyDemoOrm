@@ -3,6 +3,7 @@ package session
 import (
 	"database/sql"
 	"fmt"
+	"myorm/clause"
 	"myorm/log"
 	"myorm/schema"
 	"strings"
@@ -13,11 +14,13 @@ type Session struct {
 	sql      strings.Builder //待了解
 	sqlVars  []interface{}   //sql语句的参数确实就是这个
 	refTable *schema.Schema
+	clause   clause.Clause
 }
 
 func New(db *sql.DB) *Session {
 	return &Session{
-		db: db,
+		db:     db,
+		clause: clause.Clause{},
 	} //这种返回方式,注意了解一下
 }
 
@@ -25,6 +28,7 @@ func New(db *sql.DB) *Session {
 func (s *Session) Clear() {
 	s.sql.Reset()
 	s.sqlVars = nil
+	s.clause = clause.Clause{}
 }
 
 //获取数据库指针
