@@ -13,6 +13,7 @@ type User struct {
 	Age  int
 }
 
+//测试整体用的文件
 func main() {
 	db, err := sql.Open("mysql",
 		"user:password@tcp(127.0.0.1:3306)/database")
