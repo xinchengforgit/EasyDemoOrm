@@ -1,3 +1,3 @@
 # task3
 #### task target
-Writr an orm by myself
+write an orm framework
